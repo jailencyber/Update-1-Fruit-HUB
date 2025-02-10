@@ -1,28 +1,20 @@
--- main.lua script for spawning a fruit in front of the player in Blox Fruits
+-- Attempt to load the Main.lua script from the specified URL
+print("Fetching Main.lua script...")
+local success, result = pcall(function()
+    return game:HttpGet("https://raw.githubusercontent.com/jailencyber/Update-1-Fruit-HUB/main/Main.lua")
+end)
 
--- Print a message to indicate that the script has loaded successfully
-print("main.lua has been loaded successfully.")
+if success then
+    print("Main.lua script fetched successfully")
+    local loadSuccess, loadResult = pcall(function()
+        return loadstring(result)()
+    end)
 
--- Define the function to spawn a fruit
-function spawn_fruit(fruit_name)
-    -- Get the local player and character
-    local player = game.Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-
-    -- Get the fruit model from ServerStorage
-    local fruit_model = game.ServerStorage:FindFirstChild(fruit_name)
-
-    -- Check if the fruit exists
-    if fruit_model then
-        -- Clone the fruit model and set its position
-        local fruit_clone = fruit_model:Clone()
-        fruit_clone:SetPrimaryPartCFrame(character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 5))
-
-        -- Parent the fruit to the workspace
-        fruit_clone.Parent = workspace
-
-        print(fruit_name .. " has been spawned in front of the player.")
+    if loadSuccess then
+        print("Main.lua script loaded successfully")
     else
-        print("Error: The fruit " .. fruit_name .. " does not exist in ServerStorage.")
+        warn("Error loading Main.lua script: " .. loadResult)
     end
+else
+    warn("Error fetching Main.lua script: " .. result)
 end

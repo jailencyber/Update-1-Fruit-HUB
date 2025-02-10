@@ -66,7 +66,7 @@ game:GetService("UserInputService").InputBegan:Connect(function(input, gameProce
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         local mousePosition = input.Position
         if not dropdownFrame.AbsolutePosition or not dropdownButton.AbsolutePosition then return end
-        if not (dropdownFrame.AbsolutePosition.X <= mousePosition.X and mousePosition.X <= dropdownFrame.AbsolutePosition.X + dropdownFrame.AbsoluteSize.X and dropdownFrame.AbsolutePosition.Y <= mousePosition.Y and mousePosition.Y <= dropdownFrame.AbsolutePosition.Y + dropdownFrame.AbsoluteSize.Y) and not (dropdownButton.AbsolutePosition.X <= mousePosition.X and mousePosition.X <= dropdownButton.AbsolutePosition.X + dropdownButton.AbsoluteSize.X and dropdownButton.AbsolutePosition.Y <= mousePosition.Y and mousePosition.Y <= dropdownButton.AbsolutePosition.Y + dropdownButton.AbsoluteSize.Y) then
+        if not (dropdownFrame.AbsolutePosition.X <= mousePosition.X and mousePosition.X <= dropdownFrame.AbsolutePosition.X + dropdownFrame.AbsoluteSize.X and dropdownFrame.AbsolutePosition.Y <= mousePosition.Y and mousePosition.Y <= dropdownFrame.AbsolutePosition.Y + dropdownFrame.AbsoluteSize.Y) then
             dropdownFrame.Visible = false  -- Close dropdown if clicked outside
         end
     end

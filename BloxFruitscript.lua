@@ -65,7 +65,8 @@ game:GetService("UserInputService").InputBegan:Connect(function(input, gameProce
     -- Detect if the click is outside the dropdown (for mobile or mouse)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         local mousePosition = input.Position
-        if not dropdownFrame.AbsoluteRegion:Contains(mousePosition) and not dropdownButton.AbsoluteRegion:Contains(mousePosition) then
+        if not dropdownFrame.AbsolutePosition or not dropdownButton.AbsolutePosition then return end
+        if not (dropdownFrame.AbsolutePosition.X <= mousePosition.X and mousePosition.X <= dropdownFrame.AbsolutePosition.X + dropdownFrame.AbsoluteSize.X and dropdownFrame.AbsolutePosition.Y <= mousePosition.Y and mousePosition.Y <= dropdownFrame.AbsolutePosition.Y + dropdownFrame.AbsoluteSize.Y) and not (dropdownButton.AbsolutePosition.X <= mousePosition.X and mousePosition.X <= dropdownButton.AbsolutePosition.X + dropdownButton.AbsoluteSize.X and dropdownButton.AbsolutePosition.Y <= mousePosition.Y and mousePosition.Y <= dropdownButton.AbsolutePosition.Y + dropdownButton.AbsoluteSize.Y) then
             dropdownFrame.Visible = false  -- Close dropdown if clicked outside
         end
     end
